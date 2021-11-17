@@ -1,6 +1,8 @@
 import tensorflow as tf
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Dropout, LSTM#, CuDNNLSTM
+from tensorflow.keras.layers import Dense, Dropout
+from tensorflow.keras.layers import LSTM # jika runtime biasa
+# from tensorflow.compat.v1.keras.layers import CuDNNLSTM # jika runtime GPU
 
 
 mnist = tf.keras.datasets.mnist  # mnist adalah kumpulan data 28x28 gambar angka tulisan tangan dan labelnya
@@ -21,6 +23,7 @@ model.add(Dropout(0.1))
 model.add(Dense(32, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax'))
+
 # JIKA Anda menjalankan dengan GPU, cobalah jenis lapisan CuDNNLSTM sebagai gantinya (activation, tanh is required) dan ini akan jauh lebih cepat dan lebih efisien
 """
 model.add(CuDNNLSTM(128, input_shape=(x_train.shape[1:]), return_sequences=True))
