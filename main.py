@@ -14,17 +14,23 @@ print(x_train[0].shape)
 
 model = Sequential()
 
-# JIKA Anda menjalankan dengan GPU, cobalah jenis lapisan CuDNNLSTM sebagai gantinya (activation, tanh is required) dan itu akan jauh lebih cepat dan lebih efisien
 model.add(LSTM(128, input_shape=(x_train.shape[1:]), activation='relu', return_sequences=True))
 model.add(Dropout(0.2))
-
 model.add(LSTM(128, activation='relu'))
 model.add(Dropout(0.1))
-
 model.add(Dense(32, activation='relu'))
 model.add(Dropout(0.2))
-
 model.add(Dense(10, activation='softmax'))
+# JIKA Anda menjalankan dengan GPU, cobalah jenis lapisan CuDNNLSTM sebagai gantinya (activation, tanh is required) dan ini akan jauh lebih cepat dan lebih efisien
+"""
+model.add(CuDNNLSTM(128, input_shape=(x_train.shape[1:]), return_sequences=True))
+model.add(Dropout(0.2))
+model.add(CuDNNLSTM(128))
+model.add(Dropout(0.1))
+model.add(Dense(32, activation='relu'))
+model.add(Dropout(0.2))
+model.add(Dense(10, activation='softmax'))
+"""
 
 opt = tf.keras.optimizers.Adam(lr=0.001, decay=1e-6)
 
