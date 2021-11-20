@@ -30,7 +30,7 @@ model.add(CuDNNLSTM(128, input_shape=(x_train.shape[1:]), return_sequences=True)
 model.add(Dropout(0.2))
 model.add(CuDNNLSTM(128))
 model.add(Dropout(0.1))
-model.add(Dense(32, activation='relu'))
+model.add(Dense(32, activation='relu')) # boleh dicoba activation='tanh'
 model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax'))
 """
