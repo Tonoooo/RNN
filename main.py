@@ -24,7 +24,7 @@ model.add(Dense(32, activation='relu'))
 model.add(Dropout(0.2))
 model.add(Dense(10, activation='softmax'))
 
-# JIKA Anda menjalankan dengan GPU, cobalah jenis lapisan CuDNNLSTM sebagai gantinya (activation, tanh is required) dan ini akan jauh lebih cepat dan lebih efisien
+# JIKA Anda menjalankan dengan GPU, cobalah jenis lapisan CuDNNLSTM sebagai gantinya (jangan lewati activation, tanh diperlukan) dan ini akan jauh lebih cepat dan lebih efisien
 """
 model.add(CuDNNLSTM(128, input_shape=(x_train.shape[1:]), return_sequences=True))
 model.add(Dropout(0.2))
